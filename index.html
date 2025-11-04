@@ -1,202 +1,249 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dibarpan (Adi) Das | Engineering & AI</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Font: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Base styles */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF; /* white */
-            color: #1E293B; /* slate-800 */
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #E2E8F0; /* slate-200 */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #6366F1; /* indigo-500 */
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4F46E5; /* indigo-600 */
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Dibarpan (Adi) Das | Engineering & AI — Sci‑Fi 3D</title>
 
-        /* Gradient Text */
-        .text-gradient {
-            background: linear-gradient(to right, #a5b4fc, #6366f1); /* indigo-300 to indigo-500 */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-        }
+  <!-- Tailwind CDN for quick prototyping (swap for built CSS in production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        /* Scroll Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            will-change: opacity, transform;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#05040f;        /* deep space */
+      --accent:#6d28d9;    /* indigo */
+      --accent-2:#06b6d4;  /* teal */
+      --glass: rgba(255,255,255,0.04);
+      --card:#0b1020;
+    }
+
+    html,body{height:100%}
+    body{
+      margin:0;font-family:'Inter',system-ui,Segoe UI,Roboto,Arial;overflow-x:hidden;background:var(--bg);color:#e6eef8;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      perspective:1200px; /* enables 3D perspective for children */
+      transform-style:preserve-3d;
+    }
+
+    /* Animated nebula background (CSS gradient + animation) */
+    .space-bg{
+      position:fixed;inset:0;z-index:-50;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(ellipse at 20% 20%, rgba(109,40,217,0.12), transparent 8%), radial-gradient(ellipse at 80% 80%, rgba(6,182,212,0.08), transparent 10%), linear-gradient(180deg,#02030a 0%, #070613 50%, #080610 100%);
+      animation: bgShift 16s linear infinite;
+      will-change:transform,filter;
+      filter:blur(30px) saturate(120%);
+    }
+    @keyframes bgShift{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-30px) rotate(2deg)}100%{transform:translateY(0) rotate(0deg)}}
+
+    /* subtle starfield using repeating radial-gradients */
+    .stars::after{
+      content:"";position:fixed;inset:0;z-index:-45;pointer-events:none;background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.06) 0 1px, transparent 1px), radial-gradient(circle at 60% 40%, rgba(255,255,255,0.04) 0 1px, transparent 1px), radial-gradient(circle at 30% 80%, rgba(255,255,255,0.03) 0 1px, transparent 1px);
+      background-size: 300px 300px, 400px 400px, 250px 250px; opacity:0.9;mix-blend-mode:screen;filter:blur(0.6px);
+      animation: starDrift 40s linear infinite;
+    }
+    @keyframes starDrift{from{transform:translateY(0)}to{transform:translateY(-60px)}}
+
+    /* Floating orbs/particles */
+    .orb{
+      position:absolute;border-radius:9999px;mix-blend-mode:screen;filter:blur(12px);opacity:0.85;pointer-events:none;will-change:transform,opacity;
+    }
+
+    /* Sci‑fi hero card (3D layers) */
+    .hero-3d{
+      transform-style:preserve-3d;will-change:transform;transition:transform 0.12s ease-out;backface-visibility:hidden;
+      perspective:1000px;
+    }
+
+    .card-layer{
+      position:relative;transform-origin:center center;backface-visibility:hidden;transform-style:preserve-3d;
+    }
+
+    /* Glass card style */
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.06);box-shadow:0 6px 30px rgba(2,6,23,0.6);border-radius:18px;padding:2rem;
+      backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    /* neon outline for headings */
+    .neon{
+      text-shadow: 0 0 8px rgba(109,40,217,0.28), 0 0 28px rgba(6,182,212,0.06);
+    }
+
+    /* floating animation for badges and extras */
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+
+    .badge{animation:floaty 6s ease-in-out infinite}
+
+    /* subtle scanline overlay */
+    .scanlines{position:fixed;inset:0;z-index:-40;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);background-size:100% 28px;mix-blend-mode:overlay;opacity:0.06}
+
+    /* button tilt */
+    .tilt-btn{transform-style:preserve-3d;transition:transform .12s ease, box-shadow .12s ease}
+
+    /* project badge hover pop */
+    .pop-on-hover{transition:transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s ease}
+    .pop-on-hover:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 18px 50px rgba(3,7,18,0.6)}
+
+    /* content width tweaks */
+    .max-w-hero{max-width:980px}
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .space-bg,.stars::after,.orb{animation:none}
+      .badge{animation:none}
+      .hero-3d{transition:none}
+    }
+
+  </style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="stars">
 
-    <!-- Header / Navigation -->
-    <header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md shadow-lg">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo/Name -->
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="text-2xl font-bold text-slate-900">
-                        Adi<span class="text-indigo-500">.</span>
-                    </a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex md:items-center md:space-x-8">
-                    <a href="index.html" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Home</a>
-                    <a href="about.html" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">About</a>
-                    <a href="experience.html" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Experience</a>
-                    <a href="projects.html" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Projects</a>
-                    <a href="vision.html" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Vision</a>
-                    <a href="goals.html" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Goals</a>
-                    <a href="contact.html" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md text-sm font-medium transition duration-150">Contact</a>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="menu-toggle" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-slate-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <!-- Hamburger Icon -->
-                        <svg id="menu-icon-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <!-- Close Icon -->
-                        <svg id="menu-icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </nav>
+  <!-- Background layers -->
+  <div class="space-bg"></div>
+  <div class="scanlines"></div>
 
-        <!-- Mobile Menu, show/hide based on menu state. -->
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="index.html" class="mobile-menu-link text-gray-600 hover:bg-gray-100 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="about.html" class="mobile-menu-link text-gray-600 hover:bg-gray-100 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="experience.html" class="mobile-menu-link text-gray-600 hover:bg-gray-100 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Experience</a>
-                <a href="projects.html" class="mobile-menu-link text-gray-600 hover:bg-gray-100 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-                <a href="vision.html" class="mobile-menu-link text-gray-600 hover:bg-gray-100 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Vision</a>
-                <a href="goals.html" class="mobile-menu-link text-gray-600 hover:bg-gray-100 hover:text-slate-900 block px-3 py-2 rounded-md text-base font-medium">Goals</a>
-                <a href="contact.html" class="mobile-menu-link text-white bg-indigo-600 hover:bg-indigo-700 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+  <!-- positioned orbs (you can add more or tweak sizes) -->
+  <div id="orb-a" class="orb" style="width:260px;height:260px;left:6%;top:10%;background:radial-gradient(circle at 30% 30%, rgba(109,40,217,0.18), rgba(6,182,212,0.06));filter:blur(42px);"></div>
+  <div id="orb-b" class="orb" style="width:160px;height:160px;right:8%;top:18%;background:radial-gradient(circle at 30% 30%, rgba(6,182,212,0.12), rgba(109,40,217,0.04));filter:blur(30px);"></div>
+  <div id="orb-c" class="orb" style="width:480px;height:480px;left:50%;top:60%;transform:translateX(-50%);background:radial-gradient(circle at 50% 40%, rgba(6,182,212,0.06), transparent 40%);filter:blur(60px);opacity:0.6"></div>
+
+  <!-- Header (kept simple to emphasize 3D hero) -->
+  <header class="sticky top-0 z-40 bg-transparent">
+    <nav class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+      <a href="#" class="text-2xl font-bold neon">Adi<span class="text-indigo-400">.</span></a>
+      <div class="hidden md:flex items-center gap-6 text-sm text-slate-200/80">
+       <a href="index.html" class="hover:underline">Home</a>
+<a href="about.html" class="hover:underline">About</a>
+<a href="experience.html" class="hover:underline">Experience</a>
+<a href="projects.html" class="hover:underline">Projects</a>
+<a href="vision.html" class="hover:underline">Vision</a>
+<a href="goals.html" class="hover:underline">Goals</a>
+<a href="contact.html" class="hover:underline">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="min-h-screen flex items-center justify-center px-6 py-20">
+    <section id="home" class="max-w-hero w-full">
+
+      <!-- Hero container with 3D layers and mouse parallax -->
+      <div id="hero" class="hero-3d glass card-layer mx-auto relative overflow-visible">
+        <!-- subtle holographic grid (pseudo 3D background) -->
+        <div aria-hidden="true" class="absolute inset-0 -z-10" style="background-image:linear-gradient(180deg, rgba(255,255,255,0.01) 1px, transparent 1px); background-size: 100% 48px; opacity:0.04; transform: translateZ(-60px) scale(.98);"></div>
+
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+
+          <!-- Left: text stack (front layer) -->
+          <div class="w-full md:w-2/3 transform-gpu" style="transform:translateZ(36px)">
+            <span class="uppercase text-sm tracking-wider text-indigo-300 font-semibold badge">Hello, I'm</span>
+            <h1 class="mt-4 text-5xl md:text-6xl font-extrabold neon" style="line-height:1.02">Dibarpan (Adi) Das</h1>
+            <p class="mt-4 text-lg text-slate-300 max-w-prose">Mechanical Engineer & AI visionary designing human-like intelligent systems — robotics, automation, and sustainable design with a modern sci‑fi aesthetic.</p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="projects.html" class="tilt-btn pop-on-hover inline-block bg-gradient-to-r from-indigo-600 via-indigo-500 to-teal-400 text-white font-medium px-6 py-3 rounded-xl shadow-lg transform-gpu" data-tilt>
+                Explore My Work
+              </a>
+
+              <a href="#contact" class="ml-2 inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg border border-transparent bg-transparent text-slate-200/80 hover:bg-white/3">Get in touch</a>
             </div>
+          </div>
+
+          <!-- Right: 3D name card / avatar block (mid layer) -->
+          <div class="w-full md:w-1/3 flex justify-center md:justify-end" style="transform:translateZ(12px)">
+            <div class="rounded-2xl p-3" style="transform-style:preserve-3d;">
+              <div class="rounded-xl bg-gradient-to-br from-indigo-900/40 to-slate-900/20 p-4" style="backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,0.04); transform: translateZ(28px)">
+                <!-- stylized avatar placeholder -->
+                <div class="w-36 h-36 rounded-full bg-gradient-to-tr from-indigo-600 to-teal-400 flex items-center justify-center text-2xl font-bold text-white shadow-inner">AD</div>
+                <div class="mt-4 text-center">
+                  <div class="text-sm text-slate-300/80">Mechanical Engineer</div>
+                  <div class="text-xs text-slate-400">AI • Robotics • Sustainable Design</div>
+                </div>
+              </div>
+
+              <!-- holographic ring (back layer) -->
+              <div style="position:absolute;right:-18px;top:-18px;width:84px;height:84px;border-radius:999px;border:2px solid rgba(109,40,217,0.18);filter:blur(10px);transform: translateZ(-40px)"></div>
+            </div>
+          </div>
+
         </div>
-    </header>
+      </div>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl text-center reveal active">
-                <span class="text-indigo-600 font-semibold text-lg uppercase">Hello, I'm</span>
-                <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 mt-4 mb-6 text-gradient">
-                    Dibarpan (Adi) Das
-                </h1>
-                <h2 class="text-2xl md:text-3xl font-medium text-gray-700 mb-8">
-                    Mechanical Engineer & AI Visionary
-                </h2>
-                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10">
-                    A creative and technically skilled B.Tech student blending engineering with a passion for AI, robotics, and sustainable design to build intelligent, human-like systems.
-                </p>
-                <div class="flex flex-wrap justify-center gap-3 mb-10">
-                    <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-4 py-2 rounded-full">AI Development</span>
-                    <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-4 py-2 rounded-full">Robotics</span>
-                    <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-4 py-2 rounded-full">Automation</span>
-                    <span class="bg-indigo-100 text-indigo-700 text-sm font-medium px-4 py-2 rounded-full">Sustainable Design</span>
-                </div>
-                <a href="projects.html" class="text-white bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-md text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 transform hover:-translate-y-1">
-                    Explore My Work
-                </a>
-            </div>
-        </section>
+      <!-- small projects row (cards with 3D parallax) -->
+      <div id="projects" class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article class="glass pop-on-hover card-layer p-4" style="transform:translateZ(18px)">
+          <h3 class="font-semibold neon">AI Assistant (Aris)</h3>
+          <p class="text-sm text-slate-300/80 mt-2">Offline-first, privacy-focused assistant with contextual memory and device control.</p>
+        </article>
+        <article class="glass pop-on-hover card-layer p-4" style="transform:translateZ(12px)">
+          <h3 class="font-semibold neon">Waste Segregator</h3>
+          <p class="text-sm text-slate-300/80 mt-2">A machine to simplify and pre-process mixed waste for accurate vision recognition.</p>
+        </article>
+        <article class="glass pop-on-hover card-layer p-4" style="transform:translateZ(6px)">
+          <h3 class="font-semibold neon">3D Printing + AI</h3>
+          <p class="text-sm text-slate-300/80 mt-2">Optimizing print parameters with AI for material efficiency and reliability.</p>
+        </article>
+      </div>
 
-    </main>
+    </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-500">
-                &copy; 2025 Dibarpan (Adi) Das. Built with passion.
-            </p>
-        </div>
-    </footer>
+  <footer class="py-12 text-center text-sm text-slate-400">&copy; 2025 Dibarpan (Adi) Das — Built with sci‑fi vibes</footer>
 
-    <script>
-        // Scroll Reveal Animation
-        function revealSections() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            });
+  <script>
+    // Mouse parallax for the hero container and orbs
+    (function(){
+      const hero = document.getElementById('hero');
+      const orbs = [document.getElementById('orb-a'), document.getElementById('orb-b'), document.getElementById('orb-c')];
+      const root = document.documentElement;
 
-            document.querySelectorAll('.reveal').forEach(section => {
-                observer.observe(section);
-            });
-        }
-        
-        // Check if DOM is already loaded. If so, run immediately. Otherwise, wait.
-        if (document.readyState === "loading") {
-            document.addEventListener('DOMContentLoaded', revealSections);
-        } else {
-            revealSections();
-        }
+      // Respect reduced motion preference
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce) return;
 
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIconOpen = document.getElementById('menu-icon-open');
-        const menuIconClose = document.getElementById('menu-icon-close');
-        
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('hidden');
-            menuIconOpen.classList.toggle('hidden');
-            menuIconClose.classList.toggle('hidden');
+      // small easing helper
+      function lerp(a,b,t){return a + (b-a)*t}
+
+      let mouseX = 0, mouseY = 0, rx = 0, ry = 0;
+      window.addEventListener('mousemove', (e)=>{
+        const cx = window.innerWidth/2;
+        const cy = window.innerHeight/2;
+        mouseX = (e.clientX - cx)/cx; // -1..1
+        mouseY = (e.clientY - cy)/cy;
+      });
+
+      function animate(){
+        // hero rotation (subtle)
+        rx = lerp(rx, mouseY * -6, 0.12);
+        ry = lerp(ry, mouseX * 10, 0.12);
+        if(hero) hero.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+
+        // orbs parallax
+        if(orbs[0]) orbs[0].style.transform = `translate3d(${mouseX * -30}px, ${mouseY * -12}px, 0) scale(1.02)`;
+        if(orbs[1]) orbs[1].style.transform = `translate3d(${mouseX * 40}px, ${mouseY * 18}px, 0) scale(0.98)`;
+        if(orbs[2]) orbs[2].style.transform = `translate3d(${mouseX * -10}px, ${mouseY * 8}px, 0) scale(1.00)`;
+
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      // tiny interactive tilt on elements with [data-tilt]
+      document.querySelectorAll('[data-tilt]').forEach(el=>{
+        el.addEventListener('mousemove', (ev)=>{
+          const r = el.getBoundingClientRect();
+          const px = (ev.clientX - r.left)/r.width - 0.5; // -0.5..0.5
+          const py = (ev.clientY - r.top)/r.height - 0.5;
+          const rx = -py * 8; const ry = px * 10;
+          el.style.transform = `translateZ(12px) rotateX(${rx}deg) rotateY(${ry}deg)`;
         });
+        el.addEventListener('mouseleave', ()=>{ el.style.transform = 'translateZ(0) rotateX(0) rotateY(0)'; });
+      });
 
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                // No need to manually close, as a new page is loading which will reset the state
-            });
-        });
-    </script>
-
+    })();
+  </script>
 </body>
 </html>
-
