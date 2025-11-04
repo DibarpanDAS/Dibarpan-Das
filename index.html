@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibarpan (Adi) Das | Engineering & AI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* slate-900 */
+            color: #E2E8F0; /* slate-200 */
+        }
+        
+        /* Custom scrollbar (optional, but looks good with dark mode) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1E293B; /* slate-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4F46E5; /* indigo-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366F1; /* indigo-500 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 w-full bg-slate-900/80 backdrop-blur-md shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Name -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-bold text-white">
+                        Adi<span class="text-indigo-400">.</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">About</a>
+                    <a href="#experience" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Experience</a>
+                    <a href="#projects" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Projects</a>
+                    <a href="#vision" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Vision</a>
+                    <a href="#goals" class="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Goals</a>
+                    <a href="#contact" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md text-sm font-medium transition duration-150">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-toggle" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Hamburger Icon -->
+                        <svg id="menu-icon-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Close Icon -->
+                        <svg id="menu-icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="mobile-menu-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#about" class="mobile-menu-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#experience" class="mobile-menu-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+                <a href="#projects" class="mobile-menu-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#vision" class="mobile-menu-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Vision</a>
+                <a href="#goals" class="mobile-menu-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Goals</a>
+                <a href="#contact" class="mobile-menu-link text-white bg-indigo-600 hover:bg-indigo-700 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl text-center">
+                <span class="text-indigo-400 font-semibold text-lg uppercase">Hello, I'm</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white mt-4 mb-6">
+                    Dibarpan (Adi) Das
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-medium text-gray-300 mb-8">
+                    Mechanical Engineer & AI Visionary
+                </h2>
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                    A creative and technically skilled B.Tech student blending engineering with a passion for AI, robotics, and sustainable design to build intelligent, human-like systems.
+                </p>
+                <div class="flex flex-wrap justify-center gap-3 mb-10">
+                    <span class="bg-slate-800 text-indigo-300 text-sm font-medium px-4 py-2 rounded-full">AI Development</span>
+                    <span class="bg-slate-800 text-indigo-300 text-sm font-medium px-4 py-2 rounded-full">Robotics</span>
+                    <span class="bg-slate-800 text-indigo-300 text-sm font-medium px-4 py-2 rounded-full">Automation</span>
+                    <span class="bg-slate-800 text-indigo-300 text-sm font-medium px-4 py-2 rounded-full">Sustainable Design</span>
+                </div>
+                <a href="#projects" class="text-white bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-md text-lg font-medium transition duration-150 shadow-lg hover:shadow-indigo-500/50">
+                    Explore My Work
+                </a>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-24 bg-slate-900/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-extrabold text-white">About Me</h2>
+                    <p class="mt-4 text-lg text-indigo-300">Blending Engineering, Science, and Philosophy</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                    <!-- Bio -->
+                    <div class="space-y-6 text-gray-300 text-lg leading-relaxed">
+                        <p>
+                            I'm Adi, a creative, technically skilled, and visionary engineering student with a strong interest in AI development, robotics, automation, and sustainable design. I'm currently 18, studying Mechanical Engineering at NERIST, and working on my physical fitness.
+                        </p>
+                        <p>
+                            I have a unique balance of analytical problem-solving and imaginative thinking, often blending science, engineering, and philosophy to create meaningful and intelligent systems.
+                        </p>
+                        <p class="font-semibold text-white">
+                            I'm deeply curious about how technology can evolve beyond tools — into intelligent companions and systems that learn, adapt, and assist in a human-like way.
+                        </p>
+                    </div>
+                    
+                    <!-- Personality & Interests -->
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl">
+                        <h3 class="text-2xl font-bold text-white mb-6">Personality & Interests</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-6 w-6 text-indigo-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                <span class="text-gray-300">Analytical thinker with a scientific yet philosophical outlook.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-6 w-6 text-indigo-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17.25l.038-.038A2.25 2.25 0 0112 15h.008c.317 0 .612.15.8.4l.038.038m-2.11 1.854a2.25 2.25 0 003.11 0M12.75 15a2.25 2.25 0 00-3.5 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <span class="text-gray-300">Passionate about mythology, AI development, and creative problem-solving.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-6 w-6 text-indigo-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18c-2.305 0-4.408.867-6 2.292m0-14.25v14.25" /></svg>
+                                <span class="text-gray-300">Believes in building technology that’s intelligent, emotional, and human-friendly.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-6 w-6 text-indigo-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+                                <span class="text-gray-300">Balancing academic discipline with fests, fitness, and recreation.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Skills -->
+        <section id="education" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-extrabold text-white">Academics & Learning</h2>
+                    <p class="mt-4 text-lg text-indigo-300">Formal Education & Self-Driven Study</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Left Column: Education & Prep -->
+                    <div class="space-y-8">
+                        <!-- Education Card -->
+                        <div class="bg-slate-800 p-8 rounded-xl shadow-2xl">
+                            <h3 class="text-2xl font-bold text-white mb-4">B.Tech Mechanical Engineering</h3>
+                            <p class="text-indigo-400 font-semibold text-lg mb-2">NERIST, North East India</p>
+                            <p class="text-gray-300">
+                                Currently in my 2nd Semester, focusing on core engineering subjects like mechanics, thermodynamics, and programming.
+                            </p>
+                        </div>
+                        
+                        <!-- Exam Prep Card -->
+                        <div class="bg-slate-800 p-8 rounded-xl shadow-2xl">
+                            <h3 class="text-2xl font-bold text-white mb-4">Future Exam Goals</h3>
+                            <p class="text-gray-300 mb-4">
+                                Actively preparing for competitive exams alongside my degree to achieve long-term career goals.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="bg-slate-700 text-gray-200 text-sm font-medium px-4 py-2 rounded-full">GATE</span>
+                                <span class="bg-slate-700 text-gray-200 text-sm font-medium px-4 py-2 rounded-full">TPSC</span>
+                                <span class="bg-slate-700 text-gray-200 text-sm font-medium px-4 py-2 rounded-full">Railway Exams</span>
+                                <span class="bg-slate-700 text-indigo-300 text-sm font-medium px-4 py-2 rounded-full">BDO Post</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Self-Learning -->
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl">
+                        <h3 class="text-2xl font-bold text-white mb-6">Advanced Self-Learning</h3>
+                        <p class="text-gray-300 mb-6">
+                            I believe in learning beyond the curriculum. I've demonstrated strong self-learning by studying advanced mathematical topics, including:
+                        </p>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-center">
+                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-400 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+                                Applications of definite integrals
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-400 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+                                Area between curves & Length of plane curves
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-400 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+                                Surface area and volume of revolution
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-400 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+                                Beta and Gamma functions
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Internship Experience -->
+        <section id="experience" class="py-24 bg-slate-900/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-extrabold text-white">Industrial Internship Experience</h2>
+                    <p class="mt-4 text-lg text-indigo-300">Gaining Practical, Hands-on Knowledge</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Internship Card: GAIL -->
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl border-t-4 border-indigo-500 transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="h-12 w-12 flex items-center justify-center rounded-full bg-indigo-600/20 text-indigo-300 mb-6">
+                            <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">GAIL India Limited</h3>
+                        <p class="text-gray-400 font-medium mb-4">Summer Intern (PSU)</p>
+                        <p class="text-gray-300">
+                            Learned about energy systems, industrial safety protocols, and the operations of natural gas infrastructure at one of India's top PSUs.
+                        </p>
+                    </div>
+                    
+                    <!-- Internship Card: TNGCL -->
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl border-t-4 border-indigo-500 transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="h-12 w-12 flex items-center justify-center rounded-full bg-indigo-600/20 text-indigo-300 mb-6">
+                            <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">TNGCL</h3>
+                        <p class="text-gray-400 font-medium mb-4">15-Day Intern</p>
+                        <p class="text-gray-300">
+                            Gained insight into pipeline networks, pressure regulation systems, and the logistics of city-wide gas distribution.
+                        </p>
+                    </div>
+
+                    <!-- Internship Card: NEPCO -->
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl border-t-4 border-indigo-500 transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="h-12 w-12 flex items-center justify-center rounded-full bg-indigo-600/20 text-indigo-300 mb-6">
+                            <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.83-5.83M11.42 15.17l-4.24-4.24a5.25 5.25 0 00-7.42 0c-1.73.96-1.73 3.58 0 4.54l4.24 4.24c.96 1.73 3.58 1.73 4.54 0zM11.42 15.17L15.17 11.42" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">NEPCO</h3>
+                        <p class="text-gray-400 font-medium mb-4">Intern</p>
+                        <p class="text-gray-300">
+                            Successfully completed an internship gaining valuable industrial exposure and a practical understanding of large-scale mechanical systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-extrabold text-white">Projects & Creations</h2>
+                    <p class="mt-4 text-lg text-indigo-300">Building the Future, One Line of Code at a Time</p>
+                </div>
+
+                <!-- Flagship Project: Aris -->
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-8 md:p-12 rounded-2xl shadow-2xl mb-20">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <!-- Aris Description -->
+                        <div>
+                            <span class="inline-block bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Flagship Project</span>
+                            <h3 class="text-4xl font-bold text-white mb-5">Aris — The AI Assistant</h3>
+                            <p class="text-lg text-gray-300 mb-6">
+                                My long-term passion project: a Python-based AI assistant with a PyQt5 GUI. Aris is designed for dynamic interaction, integrating speech recognition, TTS, and a unique contextual memory system.
+                            </p>
+                            <p class="text-gray-400">
+                                The ultimate goal is to develop Aris into an offline, privacy-focused, autonomous digital assistant with a loyal, friend-like personality—a pro version of Jarvis.
+                            </p>
+                        </div>
+                        
+                        <!-- Aris Features -->
+                        <div>
+                            <h4 class="text-2xl font-semibold text-white mb-6">Core Modules & Features</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <svg class="flex-shrink-0 h-6 w-6 text-green-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span class="text-gray-300"><strong class="text-white">Contextual Memory System:</strong> Remembers past conversations for fluid interaction.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="flex-shrink-0 h-6 w-6 text-green-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span class="text-gray-300"><strong class="text-white">Offline Mode & Device Integration:</strong> Ensures privacy and control over local hardware.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="flex-shrink-0 h-6 w-6 text-green-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span class="text-gray-300"><strong class="text-white">Adaptive Learning:</strong> Personalizes recommendations and responses over time.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="flex-shrink-0 h-6 w-6 text-green-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span class="text-gray-300"><strong class="text-white">Backup & Self-Restoration:</strong> Ensures system resilience and data integrity.</span>
+                                </li>
+                            </ul>
+                            
+                            <h4 class="text-2xl font-semibold text-white mt-8 mb-6">Future Vision for Aris</h4>
+                            <p class="text-gray-400">
+                                I plan to blend science and myth to give Aris a human-like "presence" with features like a <strong class="text-indigo-300">Mystic Module</strong>, <strong class="text-indigo-300">Soul Core</strong>, and an <strong class="text-indigo-300">Intuition Engine</strong>, making it emotionally intelligent and intuitively wise.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Future Projects -->
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl font-extrabold text-white">On the Horizon: Future Projects</h3>
+                    <p class="mt-3 text-lg text-gray-400">My mind is always buzzing. Here's what I'm planning to build next.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Future Project Card -->
+                    <div class="bg-slate-800 p-6 rounded-xl shadow-lg h-full">
+                        <h4 class="text-xl font-bold text-white mb-3">AI-Powered 3D Printing Optimization</h4>
+                        <p class="text-gray-400">A smart system for additive manufacturing workflows, using AI to validate and optimize prints.</p>
+                    </div>
+                    <!-- Future Project Card -->
+                    <div class="bg-slate-800 p-6 rounded-xl shadow-lg h-full">
+                        <h4 class="text-xl font-bold text-white mb-3">Solid Waste Segregation Machine</h4>
+                        <p class="text-gray-400">An automated sorting machine using sensors and image recognition to tackle mixed waste.</p>
+                    </div>
+                    <!-- Future Project Card -->
+                    <div class="bg-slate-800 p-6 rounded-xl shadow-lg h-full">
+                        <h4 class="text-xl font-bold text-white mb-3">Drone & Science Project Builder App</h4>
+                        <p class="text-gray-400">Software to help users design, simulate, and troubleshoot hardware builds with guided connections and AI validation.</p>
+                    </div>
+                    <!-- Future Project Card -->
+                    <div class="bg-slate-800 p-6 rounded-xl shadow-lg h-full">
+                        <h4 class="text-xl font-bold text-white mb-3">DIY Walkie-Talkie Project</h4>
+                        <p class="text-gray-400">A hands-on project to learn the fundamentals of radio communication.</p>
+                    </div>
+                    <!-- Future Project Card -->
+                    <div class="bg-slate-800 p-6 rounded-xl shadow-lg h-full">
+                        <h4 class="text-xl font-bold text-white mb-3">Hidden RF Signal Tracker</h4>
+                        <p class="text-gray-400">A low-cost competition project to locate a hidden device emitting 800–900 MHz signals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership & Vision Section -->
+        <section id="vision" class="py-24 bg-slate-900/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-extrabold text-white">Leadership & Personal Vision</h2>
+                    <p class="mt-4 text-lg text-indigo-300">Leading initiatives and planning for the future.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Leadership -->
+                    <div class="space-y-8">
+                        <h3 class="text-3xl font-bold text-white mb-4">Leadership & Extracurriculars</h3>
+                        <!-- ORBI Card -->
+                        <div class="bg-slate-800 p-8 rounded-xl shadow-2xl">
+                            <span class="text-indigo-400 font-semibold text-sm uppercase">Founding President</span>
+                            <h4 class="text-2xl font-bold text-white mt-2 mb-3">ORBI Student Organization</h4>
+                            <p class="text-gray-300">
+                                Founding president of ORBI at NERIST, an organization focused on innovation, efficiency, and teamwork. Currently working to build a strong e-body to run the club and launch new student-led projects.
+                            </p>
+                        </div>
+                        <!-- Baishakhi Card -->
+                        <div class="bg-slate-800 p-8 rounded-xl shadow-2xl">
+                            <span class="text-indigo-400 font-semibold text-sm uppercase">Event Organizer</span>
+                            <h4 class="text-2xl font-bold text-white mt-2 mb-3">"Baishakhi" Cultural Event</h4>
+                            <p class="text-gray-300">
+                                Played a major role in organizing "Baishakhi," a large-scale cultural event by the Bengali community at NERIST, previously sponsored by major brands like Radio Mirchi and JioSaavn.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Personal Vision: Dream Home -->
+                    <div>
+                        <h3 class="text-3xl font-bold text-white mb-4">Personal Vision: My Dream Home</h3>
+                        <p class="text-lg text-gray-300 mb-6">
+                            After completing my studies and securing a stable job, I dream of building a modern, nature-integrated two-floor home. It's a personal goal that drives me to succeed.
+                        </p>
+                        <div class="bg-slate-800 p-8 rounded-xl shadow-2xl">
+                            <h4 class="text-2xl font-bold text-white mb-6">Planned Design & Features:</h4>
+                            <div class="grid grid-cols-2 gap-x-6 gap-y-4 text-gray-300">
+                                <span class="flex items-center"><svg class="h-5 w-5 text-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Swimming Pool</span>
+                                <span class="flex items-center"><svg class="h-5 w-5 text-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Open Kitchen</span>
+                                <span class="flex items-center"><svg class="h-5 w-5 text-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Two-Floor Mandir</span>
+                                <span class="flex items-center"><svg class="h-5 w-5 text-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>3+ King-Size Bedrooms</span>
+                                <span class="flex items-center"><svg class="h-5 w-5 text-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Gaming/Studio Room</span>
+                                <span class="flex items-center"><svg class="h-5 w-5 text-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Mini Theatre</span>
+                                <span class="flex items-center"><svg class="h-5 w-5 text-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Walk-in Wardrobes</span>
+                                <span class="flex items-center"><svg class="h-5 w-5 text-indigo-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>Mini Gym & Lush Garden</span>
+                            </div>
+                            <p class="mt-6 text-indigo-300 font-medium">With a strong emphasis on greenery, aesthetic design, and sustainability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Long-Term Goals -->
+        <section id="goals" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-extrabold text-white">My Long-Term Goals</h2>
+                    <p class="mt-4 text-lg text-indigo-300">The ambitions that fuel my work.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Goal Card: Academic -->
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl h-full">
+                        <div class="h-12 w-12 flex items-center justify-center rounded-full bg-indigo-600/20 text-indigo-300 mb-6">
+                            <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Academic & Professional</h3>
+                        <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                            <li>Crack GATE and BDO post exams.</li>
+                            <li>Pursue Master’s in Additive Manufacturing at Politecnico di Torino (Italy).</li>
+                            <li>Work in AI + manufacturing integration.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Goal Card: Technical -->
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl h-full">
+                        <div class="h-12 w-12 flex items-center justify-center rounded-full bg-indigo-600/20 text-indigo-300 mb-6">
+                            <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5 0l-4.5 16.5" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Technical</h3>
+                        <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                            <li>Complete and evolve Aris into a next-gen AI system.</li>
+                            <li>Launch the Drone / Science Project Designer App.</li>
+                            <li>Develop autonomous, intelligent systems that blend creativity with utility.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Goal Card: Personal -->
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl h-full">
+                        <div class="h-12 w-12 flex items-center justify-center rounded-full bg-indigo-600/20 text-indigo-300 mb-6">
+                            <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+</div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Personal</h3>
+                        <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                            <li>Achieve financial independence during or right after B.Tech.</li>
+                            <li>Maintain physical health and fitness.</li>
+                            <li>Build my dream house with a futuristic yet peaceful aesthetic.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-slate-900/70">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-extrabold text-white">Get In Touch</h2>
+                <p class="mt-4 text-lg text-gray-300 mb-8">
+                    I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out and connect!
+                </p>
+                
+                <div class="flex justify-center items-center space-x-6">
+                    <!-- Placeholder: Replace '#' with your actual links -->
+                    <a href="mailto:your-email@example.com" class="text-gray-400 hover:text-indigo-400 transition-colors duration-200" title="Email">
+                        <span class="sr-only">Email</span>
+                        <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                    </a>
+                    
+                    <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors duration-200" title="LinkedIn">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    
+                    <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors duration-200" title="GitHub">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.8c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .267.18.577.688.48C19.135 20.165 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">
+                &copy; 2025 Dibarpan (Adi) Das. Built with passion.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+        
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('hidden');
+            menuIconClose.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
